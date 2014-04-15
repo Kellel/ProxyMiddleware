@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 #
-# Reverse Proxy Middleware. This snippit of code shifts 
+# Reverse Proxy Middleware. This snippit of code sets the script_name environment variable to what is set in nginx
+# It then strips the common bits from the PATH_INFO variable
 
 class ReverseProxied(object):
  
