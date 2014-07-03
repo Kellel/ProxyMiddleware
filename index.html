@@ -31,6 +31,11 @@
         <h1>
 <a name="proxymiddleware" class="anchor" href="#proxymiddleware"><span class="octicon octicon-link"></span></a>ProxyMiddleware</h1>
 
+<p>A collection of WSGI application wrappers</p>
+
+<h2>
+<a name="reverseproxied" class="anchor" href="#reverseproxied"><span class="octicon octicon-link"></span></a>ReverseProxied</h2>
+
 <p>A shim for wsgi applications behind nginx</p>
 
 <p>A common problem that I have ran into when hosting wsgi applications behind a nginx reverse proxy is the rewriting of urls being returned from the upstream server.</p>
@@ -48,6 +53,21 @@
 </code></pre>
 
 <p><em>Note:</em> Variations of this code exist in other places on the internet. I do not claim to be the person who came up with this. I just love it and need somewhere I can easily find it.</p>
+
+<h2>
+<a name="trailing-slash" class="anchor" href="#trailing-slash"><span class="octicon octicon-link"></span></a>Trailing Slash</h2>
+
+<p>This module attempts to solve the problem of web apps expecting a trailing slash, but not receiving them. The module does the following in this exact order:</p>
+
+<ol>
+<li>Try the original route. If the route returns anything but a 404 return the response</li>
+<li>If the original route does return a 404 then append a slash.</li>
+<li>Try the new route. If it succeeds return the response.</li>
+<li>If the new route fails then we restore the original environment variables and continue on.</li>
+</ol><p>And this line to your wsgi file:</p>
+
+<pre><code>application = TrailingSlash(application)
+</code></pre>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/Kellel">Kellel</a></p>
@@ -55,6 +75,6 @@
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-
+    
   </body>
 </html>
