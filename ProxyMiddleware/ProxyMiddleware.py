@@ -1,11 +1,21 @@
 #!/usr/bin/env python
 #
-# Reverse Proxy Middleware. This snippit of code sets the script_name environment variable to what is set in nginx
-# It then strips the common bits from the PATH_INFO variable
+#  Kellen Fox
+#  https://github.com/Kellel/ProxyMiddleware
+#
 
 from bottle import redirect, HTTPError, abort
 
 class ReverseProxied(object):
+    """
+    Reverse Proxied
+    ---------------
+
+    Wrap a wsgi application such that the script name and path info are gleaned from the Nginx Reverse Proxy
+
+    proxy_set_header X-SCRIPT-NAME /path;
+
+    """
 
     def __init__(self, wrap_app):
         self.wrap_app = wrap_app
@@ -21,6 +31,14 @@ class ReverseProxied(object):
         return self.wrap_app(environ, start_response)
 
 class TrailingSlash(object):
+    """
+    Trailing Slash
+    --------------
+
+    Wrap a wsgi bottle  application and attempt to serve the path as is. If this fails then attempt to serve the route with an appended trailing slash
+
+    """
+
     def __init__(self, wrap_app):
         self.wrap_app = wrap_app
         self.wrap_app = self.app = wrap_app
