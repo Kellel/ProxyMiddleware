@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Proxymiddleware by Kellel</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Proxymiddleware</h1>
+        <p>A shim for wsgi applications behind nginx</p>
+
+        <p class="view"><a href="https://github.com/Kellel/ProxyMiddleware">View the Project on GitHub <small>Kellel/ProxyMiddleware</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/Kellel/ProxyMiddleware/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Kellel/ProxyMiddleware/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Kellel/ProxyMiddleware">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="proxymiddleware" class="anchor" href="#proxymiddleware"><span class="octicon octicon-link"></span></a>ProxyMiddleware</h1>
+
+<p>A shim for wsgi applications behind nginx</p>
+
+<p>A common problem that I have ran into when hosting wsgi applications behind a nginx reverse proxy is the rewriting of urls being returned from the upstream server.</p>
+
+<p>This little bit of wsgi middleware will rewrite the script name variable based on a variable set in your nginx config.</p>
+
+<p>Add this line to your nginx config:</p>
+
+<pre><code>proxy_set_header X-SCRIPT-NAME /path;
+</code></pre>
+
+<p>And this line to your wsgi file:</p>
+
+<pre><code>application = ReverseProxied(application)
+</code></pre>
+
+<p><em>Note:</em> Variations of this code exist in other places on the internet. I do not claim to be the person who came up with this. I just love it and need somewhere I can easily find it.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Kellel">Kellel</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
