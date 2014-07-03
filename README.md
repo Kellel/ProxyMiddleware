@@ -1,5 +1,5 @@
-ReverseProxyShim
-================
+ProxyMiddleware
+===============
 
 A shim for wsgi applications behind nginx
 
