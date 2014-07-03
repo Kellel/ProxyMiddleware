@@ -1,8 +1,8 @@
 from distutils.core import setup
 
-setup(name='ReverseProxyShim',
-      version='1.1',
+setup(name='ProxyMiddleware',
+      version='1.2',
       description='A collection of usefull middleware for reverse proxying things',
       author='Kellen Fox',
-      url='https://github.com/Kellel/ReverseProxyShim',
+      url='https://github.com/Kellel/ProxyMiddleware',
       packages=['ProxyMiddleware'],)
