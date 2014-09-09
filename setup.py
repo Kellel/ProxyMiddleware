@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(name='ProxyMiddleware',
-      version='1.2',
+      version='1.3',
       description='A collection of usefull middleware for reverse proxying things',
       author='Kellen Fox',
       url='https://github.com/Kellel/ProxyMiddleware',
