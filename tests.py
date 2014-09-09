@@ -1,5 +1,5 @@
 import unittest
-from ProxyMiddleware import ReverseProxied, TrailingSlash
+from ProxyMiddleware.ProxyMiddleware import ReverseProxied, TrailingSlash
 
 def testing_app(environ, start_response):
     return environ
