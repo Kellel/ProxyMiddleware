@@ -1,6 +1,8 @@
 ProxyMiddleware
 ===============
 
+[![Build Status](https://travis-ci.org/Kellel/ProxyMiddleware.svg?branch=master)](https://travis-ci.org/Kellel/ProxyMiddleware)
+
 This is a collection of WSGI Middleware classes to make applications more usable within a nginx environment
 
 ReverseProxied
