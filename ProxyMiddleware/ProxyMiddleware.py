@@ -4,7 +4,8 @@
 #  https://github.com/Kellel/ProxyMiddleware
 #
 
-from bottle import redirect, HTTPError, abort
+from functools import wraps
+from bottle import redirect, abort, request, HTTPError
 
 class ReverseProxied(object):
     """
@@ -58,3 +59,17 @@ class TrailingSlash(object):
                 pass
         return self.wrap_app(environ, start_response)
 
+def force_slash(fn):
+    """
+    Force Slash
+    -----------
+
+    Wrap a bottle route with this decorator to force a trailing slash. This is useful for the root of your application or places where TrailingSlash doesn't work
+    """
+    @wraps(fn)
+    def wrapped(*args, **kwargs):
+        if request.environ['PATH_INFO'].endswith('/'):
+            return fn(*args, **kwargs)
+        else:
+            redirect(request.environ['SCRIPT_NAME'] + request.environ['PATH_INFO'] + '/')
+    return wrapped
