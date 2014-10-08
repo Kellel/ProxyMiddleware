@@ -34,3 +34,10 @@ This can be used when you have primarily routes that end with a slash.
 
     application = TrailingSlash(application)
 
+force_slash
+-----------
+
+Force the trailing slash on a route.
+
+This is primarily useful for the root of ones application behind nginx
+
