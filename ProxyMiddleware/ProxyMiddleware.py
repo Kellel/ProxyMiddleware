@@ -5,7 +5,7 @@
 #
 
 from functools import wraps
-from bottle import redirect, abort, request, HTTPError
+from bottle import redirect, abort, request, HTTPError, response
 
 class ReverseProxied(object):
     """
@@ -73,3 +73,17 @@ def force_slash(fn):
         else:
             redirect(request.environ['SCRIPT_NAME'] + request.environ['PATH_INFO'] + '/')
     return wrapped
+
+class ClickJackingPlugin(object):
+    name = "ClickJackingPlugin"
+    api = 2
+    keyword = "clickjack"
+
+    def setup(self, app):
+        pass
+
+    def apply(self, callback, route):
+        def wrapper(*args, **kwargs):
+            response.set_header('X-Frame-Options', "SAMEORIGIN")
+            return callback(*args, **kwargs)
+        return wrapper
