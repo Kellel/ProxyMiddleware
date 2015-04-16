@@ -74,16 +74,19 @@ def force_slash(fn):
             redirect(request.environ['SCRIPT_NAME'] + request.environ['PATH_INFO'] + '/')
     return wrapped
 
-class ClickJackingPlugin(object):
-    name = "ClickJackingPlugin"
+class AddHeaderPlugin(object):
+    name = "AddHeaderPlugin"
     api = 2
-    keyword = "clickjack"
+
+    def __init__(self, headers):
+        self.headers = headers
 
     def setup(self, app):
         pass
 
     def apply(self, callback, route):
         def wrapper(*args, **kwargs):
-            response.set_header('X-Frame-Options', "SAMEORIGIN")
+            for header, value in self.headers.items():
+                response.set_header(header, value)
             return callback(*args, **kwargs)
         return wrapper
