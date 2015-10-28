@@ -74,6 +74,9 @@ def force_slash(fn):
             redirect(request.environ['SCRIPT_NAME'] + request.environ['PATH_INFO'] + '/')
     return wrapped
 
+def script_name_redirect(url):
+    redirect(request.environ['SCRIPT_NAME'] + url)
+
 class AddHeaderPlugin(object):
     name = "AddHeaderPlugin"
     api = 2
